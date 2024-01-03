@@ -66,8 +66,8 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ env.IMAGE_URL }}:${{ steps.prep.outputs.BUILD_ID }}
-            ${{ env.IMAGE_URL }}:${{ steps.prep.outputs.LATEST_ID }}
+            ${{ env.IMAGE_URL }}:${{ steps.meta.outputs.BUILD_ID }}
+            ${{ env.IMAGE_URL }}:${{ steps.meta.outputs.LATEST_ID }}
           labels: |
             maintainer=Montel Intergalactic
             org.opencontainers.image.title=Test
