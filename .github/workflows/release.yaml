@@ -72,16 +72,18 @@ jobs:
             ${{ env.IMAGE_URL }}:${{ steps.meta.outputs.BUILD_ID }}
             ${{ env.IMAGE_URL }}:${{ steps.meta.outputs.LATEST_ID }}
           labels: |
-            maintainer=Montel Intergalactic
-            org.opencontainers.image.title=Test
-            org.opencontainers.image.description=GitHub Actions test build
-            org.opencontainers.image.vendor=WVH
-            org.opencontainers.image.url=${{ github.repositoryUrl }}
-            org.opencontainers.image.source=${{ github.repositoryUrl }}
-            org.opencontainers.image.version=${{ steps.meta.outputs.SEMVER }}
+            maintainer=Cojones Masivos
+            org.opencontainers.image.title=${{ github.event.repository.name }}
+            org.opencontainers.image.description=${{ github.event.repository.description }}
+            org.opencontainers.image.authors=${{ github.repository_owner }}
+            org.opencontainers.image.vendor=${{ github.event.organization.description }}
+            org.opencontainers.image.url=${{ github.event.repository.url }}
+            org.opencontainers.image.source=${{ github.event.repository.url }}
+            org.opencontainers.image.documentation=${{ github.event.repository.url }}
             org.opencontainers.image.created=${{ steps.meta.outputs.BUILD_DATE }}
+            org.opencontainers.image.version=${{ steps.meta.outputs.SEMVER }}
             org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.licenses=WTFPL v2
+            org.opencontainers.image.licenses=${{ github.event.repository.license.spdx_id }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
