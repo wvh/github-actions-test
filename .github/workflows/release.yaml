@@ -10,7 +10,8 @@ on:
 jobs:
   docker:
     env:
-      IMAGE: wvh/github-actions
+      IMAGE: wvh/github-actions-test
+      IMAGE_URL: "ghcr.io/${{ github.repository }}"
     runs-on: ubuntu-latest
     steps:
       - name: Print env
@@ -65,8 +66,8 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ env.IMAGE }}:${{ steps.prep.outputs.BUILD_ID }}
-            ${{ env.IMAGE }}:${{ steps.prep.outputs.LATEST_ID }}
+            ${{ env.IMAGE_URL }}:${{ steps.prep.outputs.BUILD_ID }}
+            ${{ env.IMAGE_URL }}:${{ steps.prep.outputs.LATEST_ID }}
           labels: |
             maintainer=Montel Intergalactic
             org.opencontainers.image.title=Test
