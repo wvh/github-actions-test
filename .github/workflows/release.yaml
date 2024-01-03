@@ -8,11 +8,14 @@ on:
       - 'v*'
 
 jobs:
-  docker:
+  build-and-release:
+    runs-on: ubuntu-latest
     env:
       IMAGE: wvh/github-actions-test
       IMAGE_URL: "ghcr.io/${{ github.repository }}"
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Print env
         run: |
