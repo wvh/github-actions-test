@@ -102,6 +102,6 @@ jobs:
         run: |
           cosign sign --yes ${{ env.IMAGE_URL }}@${{ steps.docker_build.outputs.digest }}
           echo "Verify with:"
-          echo "  cosign verify ${{ env.IMAGE_URL }}@${{ steps.docker_build.outputs.digest }} \\"
+          echo "  cosign verify ${{ env.IMAGE_URL }}:${{ steps.meta.outputs.BUILD_ID }} \\"
           echo "    --certificate-identity=${{ github.server_url }}/${{ github.workflow_ref }} \\"
           echo "    --certificate-oidc-issuer=https://token.actions.githubusercontent.com"
