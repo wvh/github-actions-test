@@ -33,7 +33,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ IMAGE_URL }}
+          images: ${{ env.IMAGE_URL }}
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}},enable={{is_default_branch}}
